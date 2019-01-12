@@ -29,7 +29,609 @@
 
 <body class="theme-green">
     <section class="content">
+        <!--
+        <div class="container-fluid" data-page="dashboard" style="display: none;">
+            <div class="block-header">
+                <h2>ONLINE DASHBOARD</h2>
+            </div>
+            <div class="row clearfix">
+                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 metadata">
+                    <div class="info-box bg-blue-grey">
+                        <div class="icon">
+                            <i class="material-icons">person</i>
+                        </div>
+                        <div class="content">
+                            <div class="text">ANALYZED TEAM</div>
+                            <div class="number" id="team_number" contenteditable="true">0000</div>
+                        </div>
+                    </div>
+                    <div class="info-box bg-green online-only">
+                        <div class="icon">
+                            <i class="material-icons">list</i>
+                        </div>
+                        <div class="content">
+                            <div class="text">EVENT/MATCH KEY</div>
+                            <div class="number" id="match_key"></div>
+                        </div>
+                    </div>
+                    <div class="info-box bg-amber online-only">
+                        <div class="icon">
+                            <i class="material-icons">schedule</i>
+                        </div>
+                        <div class="content">
+                            <div class="text">TIME</div>
+                            <div class="number" id="match_time"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header bg-green">
+                            <h2>PREDICTIVE ANALYSIS</h2>
+                        </div>
+                        <div class="body">
+                            <div class="table-responsive">
+                                <table class="table table-striped dashboard-task-infos">
+                                    <thead>
+                                        <th></th>
+                                        <th class="bg-red">Red Avg.</th>
+                                        <th class="bg-blue">Blue Avg.</th>
+                                        <th class="bg-red">Red Max</th>
+                                        <th class="bg-blue">Blue Max</th>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Auto. Gears</td>
+                                            <td class="bg-red">2.58</td>
+                                            <td>1.73</td>
+                                            <td class="bg-red">3.00</td>
+                                            <td>2.00</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header bg-blue-grey">
+                            <h2>TEAM BREAKDOWN</h2>
+                        </div>
+                        <div class="body">
+                            <div class="table-responsive">
+                                <table class="table table-striped dashboard-task-infos">
+                                    <thead>
+                                        <th></th>
+                                        <th class="bg-red" class="dashboard-team-number">{{this}}</th>
+                                        <th class="bg-red" class="dashboard-team-number">{{this}}</th>
+                                        <th class="bg-red" class="dashboard-team-number">{{this}}</th>
+                                        <th class="bg-blue" class="dashboard-team-number">{{this}}</th>
+                                        <th class="bg-blue" class="dashboard-team-number">{{this}}</th>
+                                        <th class="bg-blue" class="dashboard-team-number">{{this}}</th>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>Auto. Gears</td>
+                                            <td>0.86</td>
+                                            <td>0.94</td>
+                                            <td>0.78</td>
+                                            <td>0.91</td>
+                                            <td>0.82</td>
+                                            <td>0.00</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid" data-page="config" style="display: none;">
+            <div class="card">
+                <div class="header">
+                    <h2>
+                        CONFIG
+                    </h2>
+                </div>
+                <div class="body">
+                    <div class="row clearfix">
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <input type="text" id="conf-un" class="form-control" placeholder="USERNAME" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <input type="text" id="conf-pw" class="form-control" placeholder="PASSWORD" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12">
+                            <div class="form-group">
+                                <div class="form-line">
+                                    <input type="text" id="conf-bt-mac" class="form-control" placeholder="BLUETOOTH MAC ADDRESS" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-12 alert alert-warning">
+                            <strong>FYI</strong> When using TGA over Bluetooth, tablets only retain their own data. Internet-abled devices will sync when connected.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid" data-page="matches" style="display: none;">
+            <div class="card">
+                <div class="header">
+                    <h2>
+                        COMPETITION MATCHES
+                    </h2>
+                </div>
+                <div class="body">
+                    <button type="button" class="btn btn-success btn-lg btn-block" onclick="updateData()">Reload Data</button>
+                    <hr>
+                    <table id="matches" class="display"></table>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid" data-page="averages" style="display: none;">
+            <div class="card">
+                <div class="header">
+                    <h2>
+                        EVENT TEAM AVERAGES
+                    </h2>
+                </div>
+                <div class="body">
+                    <button type="button" class="btn btn-success btn-lg btn-block" onclick="updateData()">Reload Data</button>
+                    <hr>
+                    <table id="averages" class="display"></table>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid" data-page="taverages" style="display: none;">
+            <div class="card">
+                <div class="header">
+                    <h2>
+                        GLOBAL TEAM AVERAGES
+                    </h2>
+                </div>
+                <div class="body">
+                    <button type="button" class="btn btn-success btn-lg btn-block" onclick="updateData()">Reload Data</button>
+                    <hr>
+                    <table id="taverages" class="display"></table>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid" data-page="eaverages" style="display: none;">
+            <div class="card">
+                <div class="header">
+                    <h2>
+                        EVENT AVERAGES
+                    </h2>
+                </div>
+                <div class="body">
+                    <button type="button" class="btn btn-success btn-lg btn-block" onclick="updateData()">Reload Data</button>
+                    <hr>
+                    <table id="eaverages" class="display"></table>
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid" data-page="input">
+            <div class="row">
+                <div id="wizard_horizontal">
+                    <h2>METADATA</h2>
+                    <section>
+                        <div class="card match-metadata">
+                            <div class="header">
+                                <h2>
+                                    MATCH SCOUTING METADATA
+                                </h2>
+                            </div>
+                            <div class="body">
+                                <div class="row clearfix">
+                                    <div class="col-sm-12">
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <input type="text" id="m-event-key" class="form-control" placeholder="EVENT KEY" />
+                                            </div>
+                                        </div>
+                                        <h2 class="card-inside-title">CURRENT MATCH: </h2>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <input type="number" id="m-scouted" class="form-control" placeholder="TEAM BEING SCOUTED" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <input type="number" id="m-number" class="form-control" placeholder="MATCH NUMBER" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input name="match-type" type="radio" id="qual-match" value="QM" class="with-gap radio-col-green" checked="">
+                                        <label for="qual-match">QUALIFICATION</label>
+                                        <input name="match-type" type="radio" id="qf-match" value="QF" class="with-gap radio-col-green">
+                                        <label for="qf-match">QUARTERFINAL</label>
+                                        <input name="match-type" type="radio" id="sf-match" value="SF" class="with-gap radio-col-green">
+                                        <label for="sf-match">SEMIFINAL</label>
+                                        <input name="match-type" type="radio" id="final-match" value="F" class="with-gap radio-col-green">
+                                        <label for="final-match">FINAL</label>
+                                        <input name="match-type" type="radio" id="replay-match" value="R" class="with-gap radio-col-green">
+                                        <label for="replay-match">REPLAY</label>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <input type="number" id="m-sub-number" class="form-control" placeholder="MATCH TYPE NUMBER (ex. Semifinal 1)" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <h2 class="card-inside-title">CURRENT SCOUT: </h2>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <input type="number" id="m-scouting" class="form-control" placeholder="SCOUT TEAM" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <div class="form-group">
+                                            <div class="form-line">
+                                                <input type="text" id="m-scout" class="form-control" placeholder="SCOUT INITIALS" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
 
+                    <h2>AUTO</h2>
+                    <section>
+                        <div class="card">
+                            <div class="header">
+                                <h2>
+                                    AUTONOMOUS PERIOD
+                                </h2>
+                            </div>
+                            <div class="body">
+                                <div class="row clearfix">
+                                    <div class="col-sm-12">
+                                        <h2 class="card-inside-title">AUTO STARTING LEVEL: </h2>
+                                        <div class="input-group">
+                                            <span class="input-group-addon" id="basic-addon0">LEVEL</span>
+                                            <input type="number" class="form-control input-number" data-counter="auto_starting_level" value="0" min="1" max="2">
+                                            <span class="input-group-btn">
+                <button type="button" class="quantity-left-minus btn btn-danger btn-number" data-counter="auto_starting_level" data-type="minus" data-field="">
+                    <span class="glyphicon glyphicon-minus"></span>
+                                            </button>
+                                            </span>
+                                            <span class="input-group-btn">
+                <button type="button" class="quantity-right-plus btn btn-success btn-number" data-counter="auto_starting_level" data-type="plus" data-field="">
+                    <span class="glyphicon glyphicon-plus"></span>
+                                            </button>
+                                            </span>
+                                        </div>
+                                    <div class="col-sm-6">
+                                        <input type="checkbox" id="auto_crossed_line" class="filled-in chk-col-green">
+                                        <label for="auto_crossed_line">AUTO CROSSED LINE</label>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <h2 class="card-inside-title">ROCKET PANELS PLACED: </h2>
+                                        <div class="input-group">
+                                            <span class="input-group-addon" id="basic-addon1">ON BOTTOM</span>
+                                            <input type="number" class="form-control input-number" data-counter="auto_bottom_rocket_panels" value="0" min="0" max="4">
+                                            <span class="input-group-btn">
+                <button type="button" class="quantity-left-minus btn btn-danger btn-number" data-counter="auto_bottom_rocket_panels" data-type="minus" data-field="">
+                    <span class="glyphicon glyphicon-minus"></span>
+                                            </button>
+                                            </span>
+                                            <span class="input-group-btn">
+                <button type="button" class="quantity-right-plus btn btn-success btn-number" data-counter="auto_bottom_rocket_panels" data-type="plus" data-field="">
+                    <span class="glyphicon glyphicon-plus"></span>
+                                            </button>
+                                            </span>
+                                        </div>
+                                        <div class="input-group">
+                                            <span class="input-group-addon" id="basic-addon1">ON MIDDLE</span>
+                                            <input type="number" class="form-control input-number" data-counter="auto_middle_rocket_panels" value="0" min="0" max="4">
+                                            <span class="input-group-btn">
+                <button type="button" class="quantity-left-minus btn btn-danger btn-number" data-counter="auto_middle_rocket_panels" data-type="minus" data-field="">
+                    <span class="glyphicon glyphicon-minus"></span>
+                                            </button>
+                                            </span>
+                                            <span class="input-group-btn">
+                <button type="button" class="quantity-right-plus btn btn-success btn-number" data-counter="auto_middle_rocket_panels" data-type="plus" data-field="">
+                    <span class="glyphicon glyphicon-plus"></span>
+                                            </button>
+                                            </span>
+                                        </div>
+                                        <div class="input-group">
+                                            <span class="input-group-addon" id="basic-addon1">ON TOP</span>
+                                            <input type="number" class="form-control input-number" data-counter="auto_top_rocket_panels" value="0" min="0" max="4">
+                                            <span class="input-group-btn">
+                <button type="button" class="quantity-left-minus btn btn-danger btn-number" data-counter="auto_top_rocket_panels" data-type="minus" data-field="">
+                    <span class="glyphicon glyphicon-minus"></span>
+                                            </button>
+                                            </span>
+                                            <span class="input-group-btn">
+                <button type="button" class="quantity-right-plus btn btn-success btn-number" data-counter="auto_top_rocket_panels" data-type="plus" data-field="">
+                    <span class="glyphicon glyphicon-plus"></span>
+                                            </button>
+                                            </span>
+                                        </div>
+                                    <div class="col-sm-12">
+                                        <h2 class="card-inside-title">ROCKET CARGO PLACED: </h2>
+                                        <div class="input-group">
+                                            <span class="input-group-addon" id="basic-addon2">ON BOTTOM</span>
+                                            <input type="number" class="form-control input-number" data-counter="auto_bottom_rocket_cargo" value="0" min="0" max="4">
+                                            <span class="input-group-btn">
+                <button type="button" class="quantity-left-minus btn btn-danger btn-number" data-counter="auto_bottom_rocket_cargo" data-type="minus" data-field="">
+                    <span class="glyphicon glyphicon-minus"></span>
+                                            </button>
+                                            </span>
+                                            <span class="input-group-btn">
+                <button type="button" class="quantity-right-plus btn btn-success btn-number" data-counter="auto_bottom_rocket_cargo" data-type="plus" data-field="">
+                    <span class="glyphicon glyphicon-plus"></span>
+                                            </button>
+                                            </span>
+                                        </div>
+                                        <div class="input-group">
+                                            <span class="input-group-addon" id="basic-addon2">ON MIDDLE</span>
+                                            <input type="number" class="form-control input-number" data-counter="auto_middle_rocket_cargo" value="0" min="0" max="4">
+                                            <span class="input-group-btn">
+                <button type="button" class="quantity-left-minus btn btn-danger btn-number" data-counter="auto_middle_rocket_cargo" data-type="minus" data-field="">
+                    <span class="glyphicon glyphicon-minus"></span>
+                                            </button>
+                                            </span>
+                                            <span class="input-group-btn">
+                <button type="button" class="quantity-right-plus btn btn-success btn-number" data-counter="auto_middle_rocket_cargo" data-type="plus" data-field="">
+                    <span class="glyphicon glyphicon-plus"></span>
+                                            </button>
+                                            </span>
+                                        </div>
+                                        <div class="input-group">
+                                            <span class="input-group-addon" id="basic-addon2">ON TOP</span>
+                                            <input type="number" class="form-control input-number" data-counter="auto_top_rocket_cargo" value="0" min="0" max="4">
+                                            <span class="input-group-btn">
+                <button type="button" class="quantity-left-minus btn btn-danger btn-number" data-counter="auto_top_rocket_cargo" data-type="minus" data-field="">
+                    <span class="glyphicon glyphicon-minus"></span>
+                                            </button>
+                                            </span>
+                                            <span class="input-group-btn">
+                <button type="button" class="quantity-right-plus btn btn-success btn-number" data-counter="auto_top_rocket_cargo" data-type="plus" data-field="">
+                    <span class="glyphicon glyphicon-plus"></span>
+                                            </button>
+                                            </span>
+                                        </div>
+                                        <div class="col-sm-12">
+                                        <h2 class="card-inside-title">AUTO SHIP PANELS: </h2>
+                                        <div class="input-group">
+                                            <span class="input-group-addon" id="basic-addon3">PANELS</span>
+                                            <input type="number" class="form-control input-number" data-counter="auto_ship_panels" value="0" min="0" max="10">
+                                            <span class="input-group-btn">
+                <button type="button" class="quantity-left-minus btn btn-danger btn-number" data-counter="auto_ship_panels" data-type="minus" data-field="">
+                    <span class="glyphicon glyphicon-minus"></span>
+                                            </button>
+                                            </span>
+                                            <span class="input-group-btn">
+                <button type="button" class="quantity-right-plus btn btn-success btn-number" data-counter="auto_ship_panels" data-type="plus" data-field="">
+                    <span class="glyphicon glyphicon-plus"></span>
+                                            </button>
+                                            </span>
+                                        </div>
+                                        <div class="col-sm-12">
+                                        <h2 class="card-inside-title">AUTO SHIP CARGO: </h2>
+                                        <div class="input-group">
+                                            <span class="input-group-addon" id="basic-addon4">CARGO</span>
+                                            <input type="number" class="form-control input-number" data-counter="auto_ship_cargo" value="0" min="0" max="10">
+                                            <span class="input-group-btn">
+                <button type="button" class="quantity-left-minus btn btn-danger btn-number" data-counter="auto_ship_cargo" data-type="minus" data-field="">
+                    <span class="glyphicon glyphicon-minus"></span>
+                                            </button>
+                                            </span>
+                                            <span class="input-group-btn">
+                <button type="button" class="quantity-right-plus btn btn-success btn-number" data-counter="auto_ship_cargo" data-type="plus" data-field="">
+                    <span class="glyphicon glyphicon-plus"></span>
+                                            </button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <h2>TELEOP</h2>
+                    <section>
+                        <div class="card">
+                            <div class="header">
+                                <h2>
+                                    TELEOPERATED PERIOD
+                                </h2>
+                            </div>
+                            <div class="body">
+                                <div class="row clearfix">
+                                    <div class="col-xs-12 col-sm-6">
+
+                                        <h2 class="card-inside-title">ROCKET PANELS PLACED: </h2>
+                                        <div class="input-group">
+                                            <span class="input-group-addon" id="basic-addon1">ON BOTTOM</span>
+                                            <input type="number" class="form-control input-number" data-counter="teleop_bottom_rocket_panels" value="0" min="0" max="4">
+                                            <span class="input-group-btn">
+                <button type="button" class="quantity-left-minus btn btn-danger btn-number" data-counter="teleop_bottom_rocket_panels" data-type="minus" data-field="">
+                    <span class="glyphicon glyphicon-minus"></span>
+                                            </button>
+                                            </span>
+                                            <span class="input-group-btn">
+                <button type="button" class="quantity-right-plus btn btn-success btn-number" data-counter="teleop_bottom_rocket_panels"  data-type="plus" data-field="">
+                    <span class="glyphicon glyphicon-plus"></span>
+                                            </button>
+                                            </span>
+                                        </div>
+                                        <div class="input-group">
+                                            <span class="input-group-addon" id="basic-addon1">ON MIDDLE</span>
+                                            <input type="number" class="form-control input-number" data-counter="teleop_middle_rocket_panels" value="0" min="0" max="4">
+                                            <span class="input-group-btn">
+                <button type="button" class="quantity-left-minus btn btn-danger btn-number" data-counter="teleop_middle_rocket_panels" data-type="minus" data-field="">
+                    <span class="glyphicon glyphicon-minus"></span>
+                                            </button>
+                                            </span>
+                                            <span class="input-group-btn">
+                <button type="button" class="quantity-right-plus btn btn-success btn-number" data-counter="teleop_middle_rocket_panels" data-type="plus" data-field="">
+                    <span class="glyphicon glyphicon-plus"></span>
+                                            </button>
+                                            </span>
+                                        </div>
+                                        <div class="input-group">
+                                            <span class="input-group-addon" id="basic-addon1">ON TOP</span>
+                                            <input type="number" class="form-control input-number" data-counter="teleop_top_rocket_panels" value="0" min="0" max="4">
+                                            <span class="input-group-btn">
+                <button type="button" class="quantity-left-minus btn btn-danger btn-number" data-counter="teleop_top_rocket_panels" data-type="minus" data-field="">
+                    <span class="glyphicon glyphicon-minus"></span>
+                                            </button>
+                                            </span>
+                                            <span class="input-group-btn">
+                <button type="button" class="quantity-right-plus btn btn-success btn-number" data-counter="teleop_top_rocket_panels" data-type="plus" data-field="">
+                    <span class="glyphicon glyphicon-plus"></span>
+                                            </button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-12 col-sm-6">
+
+                                        <h2 class="card-inside-title">ROCKET CARGO PLACED: </h2>
+                                        <div class="input-group">
+                                            <span class="input-group-addon" id="basic-addon1">ON BOTTOM</span>
+                                            <input type="number" class="form-control input-number" data-counter="teleop_bottom_rocket_cargo" value="0" min="0" max="4">
+                                            <span class="input-group-btn">
+                <button type="button" class="quantity-left-minus btn btn-danger btn-number" data-counter="teleop_bottom_rocket_cargo"  data-type="minus" data-field="">
+                    <span class="glyphicon glyphicon-minus"></span>
+                                            </button>
+                                            </span>
+                                            <span class="input-group-btn">
+                <button type="button" class="quantity-right-plus btn btn-success btn-number" data-counter="teleop_bottom_rocket_cargo"  data-type="plus" data-field="">
+                    <span class="glyphicon glyphicon-plus"></span>
+                                            </button>
+                                            </span>
+                                        </div>
+                                        <div class="input-group">
+                                            <span class="input-group-addon" id="basic-addon1">ON MIDDLE</span>
+                                            <input type="number" class="form-control input-number" data-counter="teleop_middle_rocket_cargo" value="0" min="0" max="4">
+                                            <span class="input-group-btn">
+                <button type="button" class="quantity-left-minus btn btn-danger btn-number" data-counter="teleop_middle_rocket_cargo"  data-type="minus" data-field="">
+                    <span class="glyphicon glyphicon-minus"></span>
+                                            </button>
+                                            </span>
+                                            <span class="input-group-btn">
+                <button type="button" class="quantity-right-plus btn btn-success btn-number" data-counter="teleop_middle_rocket_cargo"  data-type="plus" data-field="">
+                    <span class="glyphicon glyphicon-plus"></span>
+                                            </button>
+                                            </span>
+                                        </div>
+                                        <div class="input-group">
+                                            <span class="input-group-addon" id="basic-addon1">ON TOP</span>
+                                            <input type="number" class="form-control input-number" data-counter="teleop_top_rocket_cargo" value="0" min="0" max="4">
+                                            <span class="input-group-btn">
+                <button type="button" class="quantity-left-minus btn btn-danger btn-number" data-counter="teleop_top_rocket_cargo"  data-type="minus" data-field="">
+                    <span class="glyphicon glyphicon-minus"></span>
+                                            </button>
+                                            </span>
+                                            <span class="input-group-btn">
+                <button type="button" class="quantity-right-plus btn btn-success btn-number" data-counter="teleop_top_rocket_cargo"  data-type="plus" data-field="">
+                    <span class="glyphicon glyphicon-plus"></span>
+                                            </button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <h2 class="card-inside-title">Comments:</h2>
+                                    </div>
+                                    <div class="col-sm-6 col-md-3">
+                                        <input type="checkbox" id="reckless-driving" class="filled-in chk-col-green">
+                                        <label for="reckless-driving">RECKLESS DRIVING</label>
+                                    </div>
+                                    <div class="col-sm-6 col-md-3">
+                                        <input type="checkbox" id="accurate-cube-placer" class="filled-in chk-col-green">
+                                        <label for="accurate-cube-placer">ACCURATE CUBE PLACER</label>
+                                    </div>
+                                    <div class="col-sm-6 col-md-3">
+                                        <input type="checkbox" id="disabled" class="filled-in chk-col-green">
+                                        <label for="disabled">DISABLED</label>
+                                    </div>
+                                    <div class="col-sm-6 col-md-3">
+                                        <input type="checkbox" id="top-heavy" class="filled-in chk-col-green">
+                                        <label for="top-heavy">TOP HEAVY</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <h2>ENDGAME</h2>
+                    <section>
+                        <div class="card">
+                            <div class="header">
+                                <h2>
+                                    ENDGAME PERIOD
+                                </h2>
+                            </div>
+                            <div class="body">
+                                <div class="row clearfix">
+                                    <div class="col-sm-6 col-md-3">
+                                        <input type="checkbox" id="drove-on-platform" class="filled-in chk-col-green">
+                                        <label for="drove-on-platform">DROVE ON PLATFORM</label>
+                                    </div>
+                                    <div class="col-sm-6 col-md-3">
+                                        <input type="checkbox" id="lifted-by-partners" class="filled-in chk-col-green">
+                                        <label for="lifted-by-partners">LIFTED BY PARTNERS</label>
+                                    </div>
+                                    <div class="col-sm-6 col-md-3">
+                                        <input type="checkbox" id="climbed" class="filled-in chk-col-green">
+                                        <label for="climbed">CLIMBED THEMSELVES</label>
+                                    </div>
+                                    <div class="col-sm-6 col-md-3">
+                                        <input type="checkbox" id="lifted-partners" class="filled-in chk-col-green">
+                                        <label for="lifted-partners">LIFTED PARTNERS</label>
+                                    </div>
+                                    <div class="col-sm-12">
+                                        <h2 class="card-inside-title">Comments:</h2>
+                                    </div>
+                                    <div class="col-sm-6 col-md-3">
+                                        <input type="checkbox" id="not-present" class="filled-in chk-col-green">
+                                        <label for="not-present">NOT PRESENT</label>
+                                    </div>
+                                    <div class="col-sm-6 col-md-3">
+                                        <input type="checkbox" id="robot-failure" class="filled-in chk-col-green">
+                                        <label for="robot-failure">ROBOT FAILURE</label>
+                                    </div>
+                                    <div class="col-sm-6 col-md-3">
+                                        <input type="checkbox" id="foul" class="filled-in chk-col-green">
+                                        <label for="foul">FOUL</label>
+                                    </div>
+                                    <div class="col-sm-6 col-md-3">
+                                        <input type="checkbox" id="carded" class="filled-in chk-col-green">
+                                        <label for="carded">RED/YELLOW CARD</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    -->
     </section>
 
     <nav class="navbar">
