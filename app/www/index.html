@@ -556,6 +556,46 @@
                                         </div>
                                     </div>
                                     <div class="col-sm-12">
+                                        <h2 class="card-inside-title">TELEOP SHIP PANELS: </h2>
+                                        <div class="input-group">
+                                            <span class="input-group-addon" id="basic-addon3">PANELS</span>
+                                            <input type="number" class="form-control input-number" data-counter="teleop_ship_panels" value="0" min="0" max="10">
+                                            <span class="input-group-btn">
+                <button type="button" class="quantity-left-minus btn btn-danger btn-number" data-counter="teleop_ship_panels" data-type="minus" data-field="">
+                    <span class="glyphicon glyphicon-minus"></span>
+                                            </button>
+                                            </span>
+                                            <span class="input-group-btn">
+                <button type="button" class="quantity-right-plus btn btn-success btn-number" data-counter="teleop_ship_panels" data-type="plus" data-field="">
+                    <span class="glyphicon glyphicon-plus"></span>
+                                            </button>
+                                            </span>
+                                        </div>
+                                        <div class="col-sm-12">
+                                        <h2 class="card-inside-title">TELEOP SHIP CARGO: </h2>
+                                        <div class="input-group">
+                                            <span class="input-group-addon" id="basic-addon4">CARGO</span>
+                                            <input type="number" class="form-control input-number" data-counter="teleop_ship_cargo" value="0" min="0" max="10">
+                                            <span class="input-group-btn">
+                <button type="button" class="quantity-left-minus btn btn-danger btn-number" data-counter="teleop_ship_cargo" data-type="minus" data-field="">
+                    <span class="glyphicon glyphicon-minus"></span>
+                                            </button>
+                                            </span>
+                                            <span class="input-group-btn">
+                <button type="button" class="quantity-right-plus btn btn-success btn-number" data-counter="teleop_ship_cargo" data-type="plus" data-field="">
+                    <span class="glyphicon glyphicon-plus"></span>
+                                            </button>
+                                            </span>
+                                        </div>
+                                        <div class="col-sm-6">
+                                        <input type="checkbox" id="panel_ground_pickup" class="filled-in chk-col-green">
+                                        <label for="panel_ground_pickup">PANEL GROUND PICKUP</label>
+                                        </div>
+                                        <div class="col-sm-6">
+                                        <input type="checkbox" id="cargo_ground_pickup" class="filled-in chk-col-green">
+                                        <label for="cargo_ground_pickup">CARGO GROUND PICKUP</label>
+                                        </div>
+                                    <div class="col-sm-12">
                                         <h2 class="card-inside-title">Comments:</h2>
                                     </div>
                                     <div class="col-sm-6 col-md-3">
@@ -563,8 +603,8 @@
                                         <label for="reckless-driving">RECKLESS DRIVING</label>
                                     </div>
                                     <div class="col-sm-6 col-md-3">
-                                        <input type="checkbox" id="accurate-cube-placer" class="filled-in chk-col-green">
-                                        <label for="accurate-cube-placer">ACCURATE CUBE PLACER</label>
+                                        <input type="checkbox" id="not-present" class="filled-in chk-col-green">
+                                        <label for="not-present">NOT PRESENT</label>
                                     </div>
                                     <div class="col-sm-6 col-md-3">
                                         <input type="checkbox" id="disabled" class="filled-in chk-col-green">
@@ -573,6 +613,14 @@
                                     <div class="col-sm-6 col-md-3">
                                         <input type="checkbox" id="top-heavy" class="filled-in chk-col-green">
                                         <label for="top-heavy">TOP HEAVY</label>
+                                    </div>
+                                    <div class="col-sm-6 col-md-3">
+                                        <input type="checkbox" id="FOUL" class="filled-in chk-col-green">
+                                        <label for="foul">FOUL</label>
+                                    </div>
+                                    <div class="col-sm-6 col-md-3">
+                                        <input type="checkbox" id="card" class="filled-in chk-col-green">
+                                        <label for="card">CARD</label>
                                     </div>
                                 </div>
                             </div>
@@ -589,40 +637,52 @@
                             </div>
                             <div class="body">
                                 <div class="row clearfix">
+                                    <div class="col-sm-12">
+                                        <h2 class="card-inside-title">ENDGAME LEVEL CLIMBED: </h2>
+                                        <div class="input-group">
+                                            <span class="input-group-addon" id="basic-addon4">LEVEL</span>
+                                            <input type="number" class="form-control input-number" data-counter="endgame_level_climbed" value="0" min="1" max="3">
+                                            <span class="input-group-btn">
+                <button type="button" class="quantity-left-minus btn btn-danger btn-number" data-counter="endgame_level_climbed" data-type="minus" data-field="">
+                    <span class="glyphicon glyphicon-minus"></span>
+                                            </button>
+                                            </span>
+                                            <span class="input-group-btn">
+                <button type="button" class="quantity-right-plus btn btn-success btn-number" data-counter="endgame_level_climbed" data-type="plus" data-field="">
+                    <span class="glyphicon glyphicon-plus"></span>
+                                            </button>
+                                            </span>
+                                        </div>
                                     <div class="col-sm-6 col-md-3">
-                                        <input type="checkbox" id="drove-on-platform" class="filled-in chk-col-green">
-                                        <label for="drove-on-platform">DROVE ON PLATFORM</label>
-                                    </div>
-                                    <div class="col-sm-6 col-md-3">
-                                        <input type="checkbox" id="lifted-by-partners" class="filled-in chk-col-green">
-                                        <label for="lifted-by-partners">LIFTED BY PARTNERS</label>
-                                    </div>
-                                    <div class="col-sm-6 col-md-3">
-                                        <input type="checkbox" id="climbed" class="filled-in chk-col-green">
-                                        <label for="climbed">CLIMBED THEMSELVES</label>
-                                    </div>
-                                    <div class="col-sm-6 col-md-3">
-                                        <input type="checkbox" id="lifted-partners" class="filled-in chk-col-green">
-                                        <label for="lifted-partners">LIFTED PARTNERS</label>
+                                        <input type="checkbox" id="endgame_assist_in_climbing" class="filled-in chk-col-green">
+                                        <label for="endgame_assist_in_climbing">ENDGAME ASSIST IN CLIMBING</label>
                                     </div>
                                     <div class="col-sm-12">
                                         <h2 class="card-inside-title">Comments:</h2>
+                                    </div>
+                                    <div class="col-sm-6 col-md-3">
+                                        <input type="checkbox" id="reckless-driving" class="filled-in chk-col-green">
+                                        <label for="reckless-driving">RECKLESS DRIVING</label>
                                     </div>
                                     <div class="col-sm-6 col-md-3">
                                         <input type="checkbox" id="not-present" class="filled-in chk-col-green">
                                         <label for="not-present">NOT PRESENT</label>
                                     </div>
                                     <div class="col-sm-6 col-md-3">
-                                        <input type="checkbox" id="robot-failure" class="filled-in chk-col-green">
-                                        <label for="robot-failure">ROBOT FAILURE</label>
+                                        <input type="checkbox" id="disabled" class="filled-in chk-col-green">
+                                        <label for="disabled">DISABLED</label>
                                     </div>
                                     <div class="col-sm-6 col-md-3">
-                                        <input type="checkbox" id="foul" class="filled-in chk-col-green">
+                                        <input type="checkbox" id="top-heavy" class="filled-in chk-col-green">
+                                        <label for="top-heavy">TOP HEAVY</label>
+                                    </div>
+                                    <div class="col-sm-6 col-md-3">
+                                        <input type="checkbox" id="FOUL" class="filled-in chk-col-green">
                                         <label for="foul">FOUL</label>
                                     </div>
                                     <div class="col-sm-6 col-md-3">
-                                        <input type="checkbox" id="carded" class="filled-in chk-col-green">
-                                        <label for="carded">RED/YELLOW CARD</label>
+                                        <input type="checkbox" id="card" class="filled-in chk-col-green">
+                                        <label for="card">CARD</label>
                                     </div>
                                 </div>
                             </div>
