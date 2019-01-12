@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html manifest="config.appcache">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <title>The Green Alliance</title>
+
+    <!-- Fonts -->
+    <link href="libs/fonts/fonts.css" rel="stylesheet" type="text/css">
+
+    <!-- Bootstrap Core Css -->
+    <link href="libs/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="libs/datatables/jquery.dataTables.min.css" rel="stylesheet">
+
+    <!-- AdminBSB Theme -->
+    <link href="libs/adminbsb/style.min.css" rel="stylesheet">
+    <link href="libs/adminbsb/theme-green.min.css" rel="stylesheet" />
+
+    <!-- Firebase Auth -->
+    <link href="libs/firebase/firebaseui.css" rel="stylesheet" />
+
+    <link href="css/main.css" rel="stylesheet" />
+</head>
+
+<body class="theme-green">
+    <section class="content">
+
+    </section>
+
+    <nav class="navbar">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a href="javascript:void(0);" class="bars"></a>
+                <a class="navbar-brand" href="index.html">THE GREEN ALLIANCE</a>
+            </div>
+        </div>
+    </nav>
+
+    <section>
+        <aside id="leftsidebar" class="sidebar">
+            <div class="menu">
+                <ul class="list navigation">
+                </ul>
+                <div id="firebaseui-auth-container"></div>
+            </div>
+            <div class="legal">
+                <div class="copyright">
+                    The Green Alliance by <a href="http://team4909.org">Team 4909</a>.
+                </div>
+            </div>
+        </aside>
+    </section>
+
+    <div class="page-loader-wrapper">
+        <div class="loader">
+            <div class="preloader">
+                <div class="spinner-layer pl-green">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div>
+                    <div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
+            </div>
+            <p>Please wait...</p>
+        </div>
+    </div>
+
+    <!-- Core Js -->
+    <script type="text/javascript" src="cordova.js"></script>
+    <script src="libs/jquery/jquery.min.js"></script>
+    <script src="libs/jquery.steps/jquery.steps.js"></script>
+    <script src="libs/bootstrap/js/bootstrap.min.js"></script>
+    <script src="libs/underscore/underscore-min.js"></script>
+    <script src="libs/datatables/jquery.dataTables.min.js"></script>
+    <script src="libs/handlebars/handlebars-v4.0.11.js"></script>
+    <script src="libs/moment.js/moment.js"></script>
+    <script src="libs/tba-api/tba-api.js"></script>
+    <script src="libs/adminbsb/admin.js"></script>
+    <script src="libs/firebase/firebase-app.js"></script>
+    <script src="libs/firebase/firebase-auth.js"></script>
+    <script src="libs/firebase/firebase-firestore.js"></script>
+    <script src="libs/firebase/firebaseui.js"></script>
+
+    <!-- TGA JS -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>

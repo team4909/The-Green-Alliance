@@ -1,0 +1,11 @@
+[Unit]
+Description=The Green Alliance
+After=multi-user.target
+ 
+[Service]
+Type=simple
+ExecStart=/usr/bin/node /home/pi/2019-Core/bluetooth-bridge/server/server.js
+Restart=on-abort
+ 
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,12 @@
+[Unit]
+Description=The Green Alliance
+After=bluetooth.service
+Requires=bluetooth.service
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 /home/pi/2019-Core/bluetooth-bridge/server/worker.py
+Restart=on-abort
+ 
+[Install]
+WantedBy=multi-user.target

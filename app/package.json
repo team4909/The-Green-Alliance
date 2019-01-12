@@ -1,0 +1,26 @@
+{
+    "name": "tga-android-2019",
+    "displayName": "TGA Android",
+    "version": "1.0.1",
+    "description": "Team 4909's 2019+ Scouting System",
+    "main": "index.js",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "Roshan Ravi <roshanravi10@gmail.com>",
+    "license": "MIT",
+    "dependencies": {
+        "cordova-android": "^6.4.0",
+        "cordova-plugin-whitelist": "^1.3.3",
+        "tga-bluetooth-2018": "file:bluetooth-plugin"
+    },
+    "cordova": {
+        "plugins": {
+            "cordova-plugin-whitelist": {},
+            "tga-bluetooth-2018": {}
+        },
+        "platforms": [
+            "android"
+        ]
+    }
+}

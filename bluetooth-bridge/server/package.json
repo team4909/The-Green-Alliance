@@ -1,0 +1,20 @@
+{
+  "name": "tga-server-2019",
+  "version": "1.0.0",
+  "description": "Team 4909's 2019+ Scouting System",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git"
+  },
+  "author": "Roshan Ravi <roshanravi10@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.2",
+    "nano": "^6.4.2"
+  }
+}
