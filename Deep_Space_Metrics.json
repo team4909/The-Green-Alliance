@@ -1,7 +1,5 @@
 {
-
-"match": {
-
+    
     "event_key": 
     "match_number":
     "match_type":
@@ -35,8 +33,6 @@
     "endgame_level_climbed":
     "endgame_assist_in_climbing":
 
-    "comments_accurate_cargo_placer":
-    "comments_accurate_panel_placer":
     "comments_not_present":
     "comments_disabled":
     "comments_robot_failure":
