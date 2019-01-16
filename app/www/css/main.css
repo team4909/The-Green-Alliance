@@ -22,3 +22,18 @@ th {
 section {
     overflow: scroll;
 }
+
+.tabcontrol .style-tabs .ui-tabs-nav .icon { 
+    background-color: #156d21;
+    background-position: center 3px;
+    padding-top: 40px;
+    font-weight: bold;
+    font-size: 12px;
+    text-align: center;
+    width: 80px;
+}
+
+.ui-tabs .ui-tabs-nav
+{
+background: lightblue;
+}
