@@ -54,6 +54,20 @@ $(function () {
     });
 
     $('.page-loader-wrapper').fadeOut();
+
+    $("#wizard_horizontal").steps({
+        headerTag: "h2",
+        bodyTag: "section",
+        transitionEffect: "slideLeft",
+        enableFinishButton: false,
+        enablePagination: false,
+        enableAllSteps: true,
+        titleTemplate: "#title#",
+        cssClass: "tabcontrol",
+        onFinished: function (event, currentIndex) {
+            localStorage.setItem("event", $("#m-event-key").val());
+        }
+    });
 });
 
 $(applicationCache)
