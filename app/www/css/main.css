@@ -20,5 +20,5 @@ th {
 }
 
 section {
-    overflow: scroll;
+    overflow: auto;
 }
