@@ -63,15 +63,6 @@ $(function () {
         $(`.navigation li[data-page='${page}']`).addClass("active");
     });
 
-    $("button[data-type='minus']").click((event) => {
-        addCounterValue(event.currentTarget, -1);
-    });
-
-    $("button[data-type='plus']").click((event) => {
-        addCounterValue(event.currentTarget, +1);
-    });
-
-
     $('.page-loader-wrapper').fadeOut();
 
     $("#wizard_horizontal").steps({
@@ -84,6 +75,14 @@ $(function () {
         onFinished: function (event, currentIndex) {
             localStorage.setItem("event", $("#m-event-key").val());
         }
+    });
+    
+    $("button[data-type='minus']").click((event) => {
+        addCounterValue(event.currentTarget, -1);
+    });
+
+    $("button[data-type='plus']").click((event) => {
+        addCounterValue(event.currentTarget, +1);
     });
 });
 
@@ -100,7 +99,7 @@ function addCounterValue(target, value) {
     const counter = $(target).attr("data-counter");
     const newValue = Number($(`input[data-counter='${counter}']`).val()) + value;
 
-    if (existing > 0)
+    if (newValue >= 0)
         $(`input[data-counter='${counter}']`).val(newValue);
 }
 
