@@ -29,148 +29,11 @@
 
 <body class="theme-green">
     <section class="content">
-
-        <div class="container-fluid" data-page="dashboard" style="display: none;">
-            <div class="block-header">
-                <h2>ONLINE DASHBOARD</h2>
-            </div>
-            <div class="row clearfix">
-                <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 metadata">
-                    <div class="info-box bg-blue-grey">
-                        <div class="icon">
-                            <i class="material-icons">person</i>
-                        </div>
-                        <div class="content">
-                            <div class="text">ANALYZED TEAM</div>
-                            <div class="number" id="team_number" contenteditable="true">0000</div>
-                        </div>
-                    </div>
-                    <div class="info-box bg-green online-only">
-                        <div class="icon">
-                            <i class="material-icons">list</i>
-                        </div>
-                        <div class="content">
-                            <div class="text">EVENT/MATCH KEY</div>
-                            <div class="number" id="match_key"></div>
-                        </div>
-                    </div>
-                    <div class="info-box bg-amber online-only">
-                        <div class="icon">
-                            <i class="material-icons">schedule</i>
-                        </div>
-                        <div class="content">
-                            <div class="text">TIME</div>
-                            <div class="number" id="match_time"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-9 col-md-9 col-sm-12 col-xs-12">
-                    <div class="card">
-                        <div class="header bg-green">
-                            <h2>PREDICTIVE ANALYSIS</h2>
-                        </div>
-                        <div class="body">
-                            <div class="table-responsive">
-                                <table class="table table-striped dashboard-task-infos">
-                                    <thead>
-                                        <th></th>
-                                        <th class="bg-red">Red Avg.</th>
-                                        <th class="bg-blue">Blue Avg.</th>
-                                        <th class="bg-red">Red Max</th>
-                                        <th class="bg-blue">Blue Max</th>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Auto. Gears</td>
-                                            <td class="bg-red">2.58</td>
-                                            <td>1.73</td>
-                                            <td class="bg-red">3.00</td>
-                                            <td>2.00</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="card">
-                        <div class="header bg-blue-grey">
-                            <h2>TEAM BREAKDOWN</h2>
-                        </div>
-                        <div class="body">
-                            <div class="table-responsive">
-                                <table class="table table-striped dashboard-task-infos">
-                                    <thead>
-                                        <th></th>
-                                        <th class="bg-red" class="dashboard-team-number">{{this}}</th>
-                                        <th class="bg-red" class="dashboard-team-number">{{this}}</th>
-                                        <th class="bg-red" class="dashboard-team-number">{{this}}</th>
-                                        <th class="bg-blue" class="dashboard-team-number">{{this}}</th>
-                                        <th class="bg-blue" class="dashboard-team-number">{{this}}</th>
-                                        <th class="bg-blue" class="dashboard-team-number">{{this}}</th>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td>Auto. Gears</td>
-                                            <td>0.86</td>
-                                            <td>0.94</td>
-                                            <td>0.78</td>
-                                            <td>0.91</td>
-                                            <td>0.82</td>
-                                            <td>0.00</td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="container-fluid" data-page="config" style="display: none;">
-            <div class="card">
-                <div class="header">
-                    <h2>
-                        CONFIG
-                    </h2>
-                </div>
-                <div class="body">
-                    <div class="row clearfix">
-                        <div class="col-sm-12">
-                            <div class="form-group">
-                                <div class="form-line">
-                                    <input type="text" id="conf-un" class="form-control" placeholder="USERNAME" />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-12">
-                            <div class="form-group">
-                                <div class="form-line">
-                                    <input type="text" id="conf-pw" class="form-control" placeholder="PASSWORD" />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-12">
-                            <div class="form-group">
-                                <div class="form-line">
-                                    <input type="text" id="conf-bt-mac" class="form-control" placeholder="BLUETOOTH MAC ADDRESS" />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-sm-12 alert alert-warning">
-                            <strong>FYI</strong> When using TGA over Bluetooth, tablets only retain their own data.
-                            Internet-abled devices will sync when connected.
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
         <div class="container-fluid" data-page="matches" style="display: none;">
             <div class="card">
                 <div class="header">
                     <h2>
-                        COMPETITION MATCHES
+                        INDIVIDUAL MATCHES
                     </h2>
                 </div>
                 <div class="body">
@@ -184,41 +47,13 @@
             <div class="card">
                 <div class="header">
                     <h2>
-                        EVENT TEAM AVERAGES
+                        TEAM AVERAGES (BY EVENT)
                     </h2>
                 </div>
                 <div class="body">
                     <button type="button" class="btn btn-success btn-lg btn-block" onclick="updateData()">Reload Data</button>
                     <hr>
                     <table id="averages" class="display"></table>
-                </div>
-            </div>
-        </div>
-        <div class="container-fluid" data-page="taverages" style="display: none;">
-            <div class="card">
-                <div class="header">
-                    <h2>
-                        GLOBAL TEAM AVERAGES
-                    </h2>
-                </div>
-                <div class="body">
-                    <button type="button" class="btn btn-success btn-lg btn-block" onclick="updateData()">Reload Data</button>
-                    <hr>
-                    <table id="taverages" class="display"></table>
-                </div>
-            </div>
-        </div>
-        <div class="container-fluid" data-page="eaverages" style="display: none;">
-            <div class="card">
-                <div class="header">
-                    <h2>
-                        EVENT AVERAGES
-                    </h2>
-                </div>
-                <div class="body">
-                    <button type="button" class="btn btn-success btn-lg btn-block" onclick="updateData()">Reload Data</button>
-                    <hr>
-                    <table id="eaverages" class="display"></table>
                 </div>
             </div>
         </div>
@@ -747,6 +582,24 @@
             </div>
             <div class="menu">
                 <ul class="list navigation">
+                    <li data-page="input" class="active">
+                        <a href="#">
+                            <i class="material-icons">mode_edit</i>
+                            <span>Scouting Input</span>
+                        </a>
+                    </li>
+                    <li data-page="averages">
+                        <a href="#">
+                            <i class="material-icons">insert_chart</i>
+                            <span>Team Averages (by event)</span>
+                        </a>
+                    </li>
+                    <li data-page="matches">
+                        <a href="#">
+                            <i class="material-icons">list</i>
+                            <span>Individual Matches</span>
+                        </a>
+                    </li>
                 </ul>
             </div>
             <div class="legal">
