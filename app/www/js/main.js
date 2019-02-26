@@ -71,9 +71,6 @@ $(function () {
         addCounterValue(event.currentTarget, +1);
     });
 
-    $("button[data-type='SUBMIT']").click((event) => { // TODO: Make sure that this sends all the form values in the app to the function, which
-        sendToDatabase();                              // then sends it to the database
-    });
 
     $('.page-loader-wrapper').fadeOut();
 
@@ -82,10 +79,8 @@ $(function () {
         bodyTag: "section",
         transitionEffect: "slideLeft",
         enableFinishButton: false,
-        enablePagination: false,
-        enableAllSteps: true,
-        titleTemplate: "#title#",
-        cssClass: "tabcontrol",
+        enablePagination: true,
+        enableAllSteps: false,
         onFinished: function (event, currentIndex) {
             localStorage.setItem("event", $("#m-event-key").val());
         }
