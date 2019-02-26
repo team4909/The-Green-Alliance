@@ -7,28 +7,46 @@ firebase.initializeApp({
 var db = firebase.firestore(),
     ui = new firebaseui.auth.AuthUI(firebase.auth());
 
-ui.start('#firebaseui-auth-container', {
-    callbacks: {
-      signInSuccessWithAuthResult: function(authResult, redirectUrl) {
-        // User successfully signed in.
-        // Return type determines whether we continue the redirect automatically
-        // or whether we leave that to developer to handle.
-        console.log("ya!");
-        console.dir(authResult);
-        return false;
-      }
-    },
-    signInOptions: [
-      // Leave the lines as is for the providers you want to offer your users.
-      firebase.auth.GoogleAuthProvider.PROVIDER_ID
-    ]
-  });
-  
+firebase.auth().onAuthStateChanged(function () {
+    verifyLoginStatus();
+});
+
+function initializeLogin() {
+    ui.start('#firebaseui-auth-container', {
+        callbacks: {
+            signInSuccessWithAuthResult: function (authResult, redirectUrl) {
+                // User successfully signed in.
+                // Return type determines whether we continue the redirect automatically
+                // or whether we leave that to developer to handle.
+
+                return false;
+            }
+        },
+        signInOptions: [
+            // Leave the lines as is for the providers you want to offer your users.
+            firebase.auth.GoogleAuthProvider.PROVIDER_ID
+        ]
+    });
+}
+
+function verifyLoginStatus() {
+    var currentUser = firebase.auth().currentUser;
+
+    if (currentUser != null) {
+        $("#auth-container").text(`${currentUser.displayName} (${currentUser.email})`).show();
+        $("#firebaseui-auth-container").hide();
+    } else {
+        initializeLogin();
+        $("#firebaseui-auth-container").show();
+        $("#auth-container").hide();
+    }
+}
+
 // Disable deprecated features
 db.settings({
-  timestampsInSnapshots: true
+    timestampsInSnapshots: true
 });
-  
+
 // Onload
 $(function () {
     const apiKey = tba.ApiClient.instance.authentications['apiKey'];
@@ -79,7 +97,7 @@ $(applicationCache)
     });
 
 // Utilities
-function addCounterValue(target, value){ 
+function addCounterValue(target, value) {
     const counter = $(target).attr("data-counter");
     const newValue = Number($(`input[data-counter='${counter}']`).val()) + value;
 
@@ -88,5 +106,5 @@ function addCounterValue(target, value){
 }
 
 function exists(object) {
-     return typeof object != undefined && object != null;
+    return typeof object != undefined && object != null;
 }
