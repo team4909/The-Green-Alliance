@@ -71,6 +71,10 @@ $(function () {
         addCounterValue(event.currentTarget, +1);
     });
 
+    $("button[data-type='SUBMIT']").click((event) => { // TODO: Make sure that this sends all the form values in the app to the function, which
+        sendToDatabase();                              // then sends it to the database
+    });
+
     $('.page-loader-wrapper').fadeOut();
 
     $("#wizard_horizontal").steps({
@@ -107,4 +111,50 @@ function addCounterValue(target, value) {
 
 function exists(object) {
     return typeof object != undefined && object != null;
+}
+
+function sendToDatabase() {
+    var jsonData = {
+        "Event Key" : $("#m-event-key").val(),
+        "Team Scouted" : $("#m-scouted").val(),
+        "Match Number" : $("#m-number").val(),
+        "Match Type" : $("#qual-match").val(),
+        "Match Type Number" : $("#m-sub-number").val(),
+        "Scout Team" : $("#m-scouting").val(),
+        "Scout Initials" : $("#m-scout").val(),
+
+        "Auto Bottom Rocket Panels" : $("#basic-addon1").val(),
+        "Auto Middle Rocket Panels" : $("#basic-addon2").val(),
+        "Auto Top Rocket Panels" : $("#basic-addon3").val(),
+        "Auto Bottom Rocket Cargo" : $("#basic-addon4").val(),
+        "Auto Middle Rocket Cargo" : $("#basic-addon5").val(),
+        "Auto Top Rocket Cargo" : $("#basic-addon6").val(),
+        "Auto Ship Panels" : $("#basic-addon7").val(),
+        "Auto Ship Cargo" : $("#basic-addon8").val(),
+
+        "Teleop Bottom Rocket Panels" : $("#basic-addon9").val(),
+        "Teleop Middle Rocket Panels" : $("#basic-addon10").val(),
+        "Teleop Top Rocket Panels" : $("#basic-addon11").val(),
+        "Teleop Bottom Rocket Cargo" : $("#basic-addon12").val(),
+        "Teleop Middle Rocket Cargo" : $("#basic-addon13").val(),
+        "Teleop Top Rocket Cargo" : $("#basic-addon14").val(),
+        "Teleop Ship Panels" : $("#basic-addon15").val(),
+        "Teleop Ship Cargo" : $("#basic-addon16").val(),
+        "Panel Ground Pickup" : $("#panel_ground_pickup").val(),
+        "Cargo Ground Pickup" : $("#cargo_ground_pickup").val(),
+
+        "Endgame Level Climbed" : $("#endgame_level_climbed").val(),
+        "Endgame Assist in Climbing" : $("#endgame_assist_in_climbing").val(),
+
+        "Reckless Driving" : $("#reckless-driving").val(),
+        "Not Present" : $("#not-present").val(),
+        "Disabled" : $("#comments-disabled").val(),
+        "Robot Failure" : $("#robot-failure").val(),
+        "Top Heavy" : $("#top-heavy").val(),
+        "Foul" : $("#foul").val(),
+        "Card" : $("#card").val()
+    }
+
+    db.collection("the-green-allliance").add(jsonData);
+
 }
