@@ -116,45 +116,46 @@ function exists(object) {
 function sendToDatabase() {
     var jsonData = {
         "Event Key" : $("#m-event-key").val(),
-        "Team Scouted" : $("#m-scouted").val(),
-        "Match Number" : $("#m-number").val(),
+        "Team Scouted" : Number($("#m-scouted").val()),
+        "Match Number" : Number($("#m-number").val()),
         "Match Type" : $("#qual-match").val(),
-        "Match Type Number" : $("#m-sub-number").val(),
-        "Scout Team" : $("#m-scouting").val(),
+        "Match Type Number" : Number($("#m-sub-number").val()),
+        "Scout Team" : Number($("#m-scouting").val()),
         "Scout Initials" : $("#m-scout").val(),
 
-        "Auto Bottom Rocket Panels" : $("#basic-addon1").val(),
-        "Auto Middle Rocket Panels" : $("#basic-addon2").val(),
-        "Auto Top Rocket Panels" : $("#basic-addon3").val(),
-        "Auto Bottom Rocket Cargo" : $("#basic-addon4").val(),
-        "Auto Middle Rocket Cargo" : $("#basic-addon5").val(),
-        "Auto Top Rocket Cargo" : $("#basic-addon6").val(),
-        "Auto Ship Panels" : $("#basic-addon7").val(),
-        "Auto Ship Cargo" : $("#basic-addon8").val(),
+        "Auto Bottom Rocket Panels" : Number($("#basic-addon1").val()),
+        "Auto Middle Rocket Panels" : Number($("#basic-addon2").val()),
+        "Auto Top Rocket Panels" : Number($("#basic-addon3").val()),
+        "Auto Bottom Rocket Cargo" : Number($("#basic-addon4").val()),
+        "Auto Middle Rocket Cargo" : Number($("#basic-addon5").val()),
+        "Auto Top Rocket Cargo" : Number($("#basic-addon6").val()),
+        "Auto Ship Panels" : Number($("#basic-addon7").val()),
+        "Auto Ship Cargo" : Number($("#basic-addon8").val()),
 
-        "Teleop Bottom Rocket Panels" : $("#basic-addon9").val(),
-        "Teleop Middle Rocket Panels" : $("#basic-addon10").val(),
-        "Teleop Top Rocket Panels" : $("#basic-addon11").val(),
-        "Teleop Bottom Rocket Cargo" : $("#basic-addon12").val(),
-        "Teleop Middle Rocket Cargo" : $("#basic-addon13").val(),
-        "Teleop Top Rocket Cargo" : $("#basic-addon14").val(),
-        "Teleop Ship Panels" : $("#basic-addon15").val(),
-        "Teleop Ship Cargo" : $("#basic-addon16").val(),
-        "Panel Ground Pickup" : $("#panel_ground_pickup").val(),
-        "Cargo Ground Pickup" : $("#cargo_ground_pickup").val(),
+        "Teleop Bottom Rocket Panels" : Number($("#basic-addon9").val()),
+        "Teleop Middle Rocket Panels" : Number($("#basic-addon10").val()),
+        "Teleop Top Rocket Panels" : Number($("#basic-addon11").val()),
+        "Teleop Bottom Rocket Cargo" : Number($("#basic-addon12").val()),
+        "Teleop Middle Rocket Cargo" : Number($("#basic-addon13").val()),
+        "Teleop Top Rocket Cargo" : Number($("#basic-addon14").val()),
+        "Teleop Ship Panels" : Number($("#basic-addon15").val()),
+        "Teleop Ship Cargo" : Number($("#basic-addon16").val()),
+        "Panel Ground Pickup" : $("#panel_ground_pickup").is(":checked") ? 1 : 0,
+        "Cargo Ground Pickup" : $("#cargo_ground_pickup").is(":checked") ? 1 : 0,
 
-        "Endgame Level Climbed" : $("#endgame_level_climbed").val(),
-        "Endgame Assist in Climbing" : $("#endgame_assist_in_climbing").val(),
+        "Endgame Level Climbed" : Number($("#endgame_level_climbed").val()),
+        "Endgame Assist in Climbing" : $("#endgame_assist_in_climbing").is(":checked") ? 1 : 0,
 
-        "Reckless Driving" : $("#reckless-driving").val(),
-        "Not Present" : $("#not-present").val(),
-        "Disabled" : $("#comments-disabled").val(),
-        "Robot Failure" : $("#robot-failure").val(),
-        "Top Heavy" : $("#top-heavy").val(),
-        "Foul" : $("#foul").val(),
-        "Card" : $("#card").val()
-    }
+        "Reckless Driving" : $("#reckless-driving").is(":checked") ? 1 : 0,
+        "Not Present" : $("#not-present").is(":checked") ? 1 : 0,
+        "Disabled" : $("#disabled").is(":checked") ? 1 : 0,
+        "Robot Failure" : $("#robot-failure").is(":checked") ? 1 : 0,
+        "Top Heavy" : $("#top-heavy").is(":checked") ? 1 : 0,
+        "Foul" : $("#foul").is(":checked") ? 1 : 0,
+        "Card" : $("#card").is(":checked") ? 1 : 0
+    };
+    
+    // TODO: Clear Fields
 
-    db.collection("the-green-allliance").add(jsonData);
-
+    db.collection("the-green-alliance").add(jsonData);
 }
