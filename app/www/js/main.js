@@ -4,9 +4,10 @@ firebase.initializeApp({
     projectId: "the-green-alliance",
 });
 
-var db = firebase.firestore(),
-    ui = new firebaseui.auth.AuthUI(firebase.auth());
+var db = firebase.firestore();
+db.enablePersistence();
 
+var ui = new firebaseui.auth.AuthUI(firebase.auth());
 firebase.auth().onAuthStateChanged(function () {
     verifyLoginStatus();
 });
@@ -41,11 +42,6 @@ function verifyLoginStatus() {
         $("#auth-container").hide();
     }
 }
-
-// Disable deprecated features
-db.settings({
-    timestampsInSnapshots: true
-});
 
 // Onload
 $(function () {
