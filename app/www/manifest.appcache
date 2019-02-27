@@ -1,0 +1,59 @@
+CACHE MANIFEST
+
+# Time: Wed Feb 27 2019 11:35:39 GMT-0500 (EST)
+# This manifest was created by confess.js, http://github.com/jamesgpearce/confess
+#
+# Retrieved URL: https://the-green-alliance.firebaseapp.com/
+# User-agent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.12 Safari/535.11
+#
+# Config:
+#  task: appcache
+#  userAgent: Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/535.11 (KHTML, like Gecko) Chrome/17.0.963.12 Safari/535.11
+#  wait: 0
+#  consolePrefix: #
+#  verbose: true
+#  appcache:
+#   urlsFromDocument: true
+#   urlsFromRequests: false
+#   cacheFilter: .*
+#   networkFilter: null
+#  url: https://the-green-alliance.firebaseapp.com/
+#  configFile: config.json
+
+CACHE:
+cordova.js
+css/main.css
+https://the-green-alliance.firebaseapp.com/libs/images/sort_asc.png
+https://the-green-alliance.firebaseapp.com/libs/images/sort_asc_disabled.png
+https://the-green-alliance.firebaseapp.com/libs/images/sort_both.png
+https://the-green-alliance.firebaseapp.com/libs/images/sort_desc.png
+https://the-green-alliance.firebaseapp.com/libs/images/sort_desc_disabled.png
+https://the-green-alliance.firebaseapp.com/libs/images/user-img-background.jpg
+https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/flags_sprite_2x.png
+https://www.gstatic.com/images/icons/material/system/1x/arrow_drop_down_grey600_18dp.png
+https://www.gstatic.com/images/icons/material/system/1x/visibility_black_24dp.png
+https://www.gstatic.com/images/icons/material/system/1x/visibility_off_black_24dp.png
+https://www.gstatic.com/images/icons/material/system/2x/done_googgreen_36dp.png
+js/main.js
+libs/adminbsb/admin.js
+libs/adminbsb/style.min.css
+libs/adminbsb/theme-green.min.css
+libs/bootstrap/css/bootstrap.min.css
+libs/bootstrap/js/bootstrap.min.js
+libs/datatables/jquery.dataTables.min.css
+libs/datatables/jquery.dataTables.min.js
+libs/firebase/firebase-app.js
+libs/firebase/firebase-auth.js
+libs/firebase/firebase-firestore.js
+libs/firebase/firebaseui.css
+libs/firebase/firebaseui.js
+libs/fonts/fonts.css
+libs/handlebars/handlebars-v4.0.11.js
+libs/jquery.steps/jquery.steps.js
+libs/jquery/jquery.min.js
+libs/moment.js/moment.js
+libs/tba-api/tba-api.js
+libs/underscore/underscore-min.js
+
+NETWORK:
+*

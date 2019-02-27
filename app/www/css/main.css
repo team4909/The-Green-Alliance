@@ -18,3 +18,21 @@ th {
     background-color: #e0e0e0;
     text-align: right;
 }
+
+section {
+    overflow: auto;
+}
+
+.tabcontrol {
+    background-color: #4caf50;
+}
+
+/* Hide HTML5 Up and Down arrows. */
+input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+ 
+input[type="number"] {
+    -moz-appearance: textfield;
+}

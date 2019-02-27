@@ -4,31 +4,45 @@ firebase.initializeApp({
     projectId: "the-green-alliance",
 });
 
-var db = firebase.firestore(),
-    ui = new firebaseui.auth.AuthUI(firebase.auth());
+var db = firebase.firestore();
+db.enablePersistence();
 
-ui.start('#firebaseui-auth-container', {
-    callbacks: {
-      signInSuccessWithAuthResult: function(authResult, redirectUrl) {
-        // User successfully signed in.
-        // Return type determines whether we continue the redirect automatically
-        // or whether we leave that to developer to handle.
-        console.log("ya!");
-        console.dir(authResult);
-        return false;
-      }
-    },
-    signInOptions: [
-      // Leave the lines as is for the providers you want to offer your users.
-      firebase.auth.GoogleAuthProvider.PROVIDER_ID
-    ]
-  });
-  
-// Disable deprecated features
-db.settings({
-  timestampsInSnapshots: true
+var ui = new firebaseui.auth.AuthUI(firebase.auth());
+firebase.auth().onAuthStateChanged(function () {
+    verifyLoginStatus();
 });
-  
+
+function initializeLogin() {
+    ui.start('#firebaseui-auth-container', {
+        callbacks: {
+            signInSuccessWithAuthResult: function (authResult, redirectUrl) {
+                // User successfully signed in.
+                // Return type determines whether we continue the redirect automatically
+                // or whether we leave that to developer to handle.
+
+                return false;
+            }
+        },
+        signInOptions: [
+            // Leave the lines as is for the providers you want to offer your users.
+            firebase.auth.GoogleAuthProvider.PROVIDER_ID
+        ]
+    });
+}
+
+function verifyLoginStatus() {
+    var currentUser = firebase.auth().currentUser;
+
+    if (currentUser != null) {
+        $("#auth-container").text(`${currentUser.displayName} (${currentUser.email})`).show();
+        $("#firebaseui-auth-container").hide();
+    } else {
+        initializeLogin();
+        $("#firebaseui-auth-container").show();
+        $("#auth-container").hide();
+    }
+}
+
 // Onload
 $(function () {
     const apiKey = tba.ApiClient.instance.authentications['apiKey'];
@@ -45,6 +59,20 @@ $(function () {
         $(`.navigation li[data-page='${page}']`).addClass("active");
     });
 
+    $('.page-loader-wrapper').fadeOut();
+
+    $("#wizard_horizontal").steps({
+        headerTag: "h2",
+        bodyTag: "section",
+        transitionEffect: "slideLeft",
+        enableFinishButton: false,
+        enablePagination: true,
+        enableAllSteps: false,
+        onFinished: function (event, currentIndex) {
+            localStorage.setItem("event", $("#m-event-key").val());
+        }
+    });
+    
     $("button[data-type='minus']").click((event) => {
         addCounterValue(event.currentTarget, -1);
     });
@@ -52,8 +80,24 @@ $(function () {
     $("button[data-type='plus']").click((event) => {
         addCounterValue(event.currentTarget, +1);
     });
-
-    $('.page-loader-wrapper').fadeOut();
+    
+    // Disable scroll when focused on a number input.
+    $('form').on('focus', 'input[type=number]', function(e) {
+        $(this).on('wheel', function(e) {
+            e.preventDefault();
+        });
+    });
+ 
+    // Restore scroll on number inputs.
+    $('form').on('blur', 'input[type=number]', function(e) {
+        $(this).off('wheel');
+    });
+ 
+    // Disable up and down keys.
+    $('form').on('keydown', 'input[type=number]', function(e) {
+        if ( e.which == 38 || e.which == 40 )
+            e.preventDefault();
+    });  
 });
 
 $(applicationCache)
@@ -65,14 +109,61 @@ $(applicationCache)
     });
 
 // Utilities
-function addCounterValue(target, value){ 
+function addCounterValue(target, value) {
     const counter = $(target).attr("data-counter");
     const newValue = Number($(`input[data-counter='${counter}']`).val()) + value;
 
-    if (existing > 0)
+    if (newValue >= 0)
         $(`input[data-counter='${counter}']`).val(newValue);
 }
 
 function exists(object) {
-     return typeof object != undefined && object != null;
+    return typeof object != undefined && object != null;
+}
+
+function sendToDatabase() {
+    var jsonData = {
+        "Event Key" : $("#m-event-key").val(),
+        "Team Scouted" : Number($("#m-scouted").val()),
+        "Match Number" : Number($("#m-number").val()),
+        "Match Type" : $("#qual-match").val(),
+        "Match Type Number" : Number($("#m-sub-number").val()),
+        "Scout Team" : Number($("#m-scouting").val()),
+        "Scout Initials" : $("#m-scout").val(),
+
+        "Auto Top Rocket Panels" : Number($("#basic-addon3").val()),
+        "Auto Middle Rocket Panels" : Number($("#basic-addon2").val()),
+        "Auto Bottom Rocket Panels" : Number($("#basic-addon1").val()),
+        "Auto Top Rocket Cargo" : Number($("#basic-addon6").val()),
+        "Auto Middle Rocket Cargo" : Number($("#basic-addon5").val()),
+        "Auto Bottom Rocket Cargo" : Number($("#basic-addon4").val()),
+        "Auto Ship Panels" : Number($("#basic-addon7").val()),
+        "Auto Ship Cargo" : Number($("#basic-addon8").val()),
+
+        "Teleop Top Rocket Panels" : Number($("#basic-addon11").val()),
+        "Teleop Middle Rocket Panels" : Number($("#basic-addon10").val()),
+        "Teleop Bottom Rocket Panels" : Number($("#basic-addon9").val()),
+        "Teleop Top Rocket Cargo" : Number($("#basic-addon14").val()),
+        "Teleop Middle Rocket Cargo" : Number($("#basic-addon13").val()),
+        "Teleop Bottom Rocket Cargo" : Number($("#basic-addon12").val()),
+        "Teleop Ship Panels" : Number($("#basic-addon15").val()),
+        "Teleop Ship Cargo" : Number($("#basic-addon16").val()),
+        "Panel Ground Pickup" : $("#panel_ground_pickup").is(":checked") ? 1 : 0,
+        "Cargo Ground Pickup" : $("#cargo_ground_pickup").is(":checked") ? 1 : 0,
+
+        "Endgame Level Climbed" : Number($("#endgame_level_climbed").val()),
+        "Endgame Assist in Climbing" : $("#endgame_assist_in_climbing").is(":checked") ? 1 : 0,
+
+        "Reckless Driving" : $("#reckless-driving").is(":checked") ? 1 : 0,
+        "Not Present" : $("#not-present").is(":checked") ? 1 : 0,
+        "Disabled" : $("#disabled").is(":checked") ? 1 : 0,
+        "Robot Failure" : $("#robot-failure").is(":checked") ? 1 : 0,
+        "Top Heavy" : $("#top-heavy").is(":checked") ? 1 : 0,
+        "Foul" : $("#foul").is(":checked") ? 1 : 0,
+        "Card" : $("#card").is(":checked") ? 1 : 0
+    };
+    
+    // TODO: Clear Fields
+
+    db.collection("the-green-alliance").add(jsonData);
 }
