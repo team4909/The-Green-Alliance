@@ -165,5 +165,44 @@ function sendToDatabase() {
     
     // TODO: Clear Fields
 
+    $("#m-event-key").val() = ""; 
+    Number($("#m-scouted").val()) = 0;
+    Number($("#m-number").val()) = 0;
+    $("#qual-match").val() = "qf-match";
+    Number($("#m-sub-number").val()) = 0;
+    Number($("#m-scouting").val()) = 0;
+    $("#m-scout").val() = "";
+
+    Number($("#basic-addon3").val()) = 0;
+    Number($("#basic-addon2").val()) = 0;
+    Number($("#basic-addon1").val()) = 0;
+    Number($("#basic-addon6").val()) = 0;
+    Number($("#basic-addon5").val()) = 0;
+    Number($("#basic-addon4").val()) = 0;
+    Number($("#basic-addon7").val()) = 0;
+    Number($("#basic-addon8").val()) = 0;
+
+    Number($("#basic-addon11").val()) = 0;
+    Number($("#basic-addon10").val()) = 0;
+    Number($("#basic-addon9").val()) = 0;
+    Number($("#basic-addon14").val()) = 0;
+    Number($("#basic-addon13").val()) = 0;
+    Number($("#basic-addon12").val()) = 0;
+    Number($("#basic-addon15").val()) = 0;
+    Number($("#basic-addon16").val()) = 0;
+    $("#panel_ground_pickup").is(":checked", false);
+    $("#cargo_ground_pickup").is(":checked", false);
+
+    Number($("#endgame_level_climbed").val()) = 0;
+    $("#endgame_assist_in_climbing").is(":checked", false); 
+
+    $("#reckless-driving").is(":checked", false);
+    $("#not-present").is(":checked", false);
+    $("#disabled").is(":checked", false);
+    $("#robot-failure").is(":checked", false);
+    $("#top-heavy").is(":checked", false);
+    $("#foul").is(":checked", false);
+    $("#card").is(":checked", false);
+
     db.collection("the-green-alliance").add(jsonData);
 }
