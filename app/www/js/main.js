@@ -163,7 +163,12 @@ function sendToDatabase() {
         "Card" : $("#card").is(":checked") ? 1 : 0
     };
     
-    // TODO: Clear Fields
+    $(`.match-metadata input[type='text']`).val("");
+    $(`.match-metadata input[type='number']`).val("");
+    $("#m-event-key").val(localStorage.getItem("event"));
+    $(`input[data-counter]`).val("0");
+    $(`input[type='checkbox']`).prop("checked", false);
+    $('#wizard_horizontal').steps('restart');
 
     db.collection("the-green-alliance").add(jsonData);
 }
