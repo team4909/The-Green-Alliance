@@ -117,9 +117,6 @@ function addCounterValue(target, value) {
         $(`input[data-counter='${counter}']`).val(newValue);
 }
 
-function exists(object) {
-    return typeof object != undefined && object != null;
-}
 
 function sendToDatabase() {
     var jsonData = {
