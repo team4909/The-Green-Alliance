@@ -170,150 +170,341 @@ function sendToDatabase() {
     db.collection("the-green-alliance").add(jsonData);
 }
 
+var columnDefs = [
+  {
+    "title": "Event Key",
+    "data": "Event Key"
+  },
+  {
+    "title": "Team Scouted",
+    "data": "Team Scouted"
+  },
+  {
+    "title": "Match Number",
+    "data": "Match Number"
+  },
+  {
+    "title": "Match Type",
+    "data": "Match Type"
+  },
+  {
+    "title": "Match Type Number",
+    "data": "Match Type Number"
+  },
+  {
+    "title": "Scout Team",
+    "data": "Scout Team"
+  },
+  {
+    "title": "Scout Initials",
+    "data": "Scout Initials"
+  },
+  {
+    "title": "Auto Top Rocket Panels",
+    "data": "Auto Top Rocket Panels"
+  },
+  {
+    "title": "Auto Middle Rocket Panels",
+    "data": "Auto Middle Rocket Panels"
+  },
+  {
+    "title": "Auto Bottom Rocket Panels",
+    "data": "Auto Bottom Rocket Panels"
+  },
+  {
+    "title": "Auto Top Rocket Cargo",
+    "data": "Auto Top Rocket Cargo"
+  },
+  {
+    "title": "Auto Middle Rocket Cargo",
+    "data": "Auto Middle Rocket Cargo"
+  },
+  {
+    "title": "Auto Bottom Rocket Cargo",
+    "data": "Auto Bottom Rocket Cargo"
+  },
+  {
+    "title": "Auto Ship Panels",
+    "data": "Auto Ship Panels"
+  },
+  {
+    "title": "Auto Ship Cargo",
+    "data": "Auto Ship Cargo"
+  },
+  {
+    "title": "Teleop Top Rocket Panels",
+    "data": "Teleop Top Rocket Panels"
+  },
+  {
+    "title": "Teleop Middle Rocket Panels",
+    "data": "Teleop Middle Rocket Panels"
+  },
+  {
+    "title": "Teleop Bottom Rocket Panels",
+    "data": "Teleop Bottom Rocket Panels"
+  },
+  {
+    "title": "Teleop Top Rocket Cargo",
+    "data": "Teleop Top Rocket Cargo"
+  },
+  {
+    "title": "Teleop Middle Rocket Cargo",
+    "data": "Teleop Middle Rocket Cargo"
+  },
+  {
+    "title": "Teleop Bottom Rocket Cargo",
+    "data": "Teleop Bottom Rocket Cargo"
+  },
+  {
+    "title": "Teleop Ship Panels",
+    "data": "Teleop Ship Panels"
+  },
+  {
+    "title": "Teleop Ship Cargo",
+    "data": "Teleop Ship Cargo"
+  },
+  {
+    "title": "Panel Ground Pickup",
+    "data": "Panel Ground Pickup"
+  },
+  {
+    "title": "Cargo Ground Pickup",
+    "data": "Cargo Ground Pickup"
+  },
+  {
+    "title": "Endgame Level Climbed",
+    "data": "Endgame Level Climbed"
+  },
+  {
+    "title": "Endgame Assist in Climbing",
+    "data": "Endgame Assist in Climbing"
+  },
+  {
+    "title": "Reckless Driving",
+    "data": "Reckless Driving"
+  },
+  {
+    "title": "Not Present",
+    "data": "Not Present"
+  },
+  {
+    "title": "Disabled",
+    "data": "Disabled"
+  },
+  {
+    "title": "Robot Failure",
+    "data": "Robot Failure"
+  },
+  {
+    "title": "Top Heavy",
+    "data": "Top Heavy"
+  },
+  {
+    "title": "Foul",
+    "data": "Foul"
+  },
+  {
+    "title": "Card",
+    "data": "Card"
+  }
+];
+
 function reloadMatches(){
     db.collection("the-green-alliance").get().then(function (querySnapshot) {
         $('#matches').DataTable({
-            data: querySnapshot.docs.map(doc => doc.data()),
+            data: querySnapshot.docs.map((doc) => {
+                var match = doc.data();
+
+                match["Event Key"] = match["Event Key"].toUpperCase();
+                match["Grouping Key"] = match["Event Key"].toUpperCase().replace(/^[0-9]+/, '') + match["Team Scouted"];
+
+                return match;
+            }),
             scrollX: true,
             destroy: true,
-            columns: [
-              {
-                "title": "Event Key",
-                "data": "Event Key"
-              },
-              {
-                "title": "Team Scouted",
-                "data": "Team Scouted"
-              },
-              {
-                "title": "Match Number",
-                "data": "Match Number"
-              },
-              {
-                "title": "Match Type",
-                "data": "Match Type"
-              },
-              {
-                "title": "Match Type Number",
-                "data": "Match Type Number"
-              },
-              {
-                "title": "Scout Team",
-                "data": "Scout Team"
-              },
-              {
-                "title": "Scout Initials",
-                "data": "Scout Initials"
-              },
-              {
-                "title": "Auto Top Rocket Panels",
-                "data": "Auto Top Rocket Panels"
-              },
-              {
-                "title": "Auto Middle Rocket Panels",
-                "data": "Auto Middle Rocket Panels"
-              },
-              {
-                "title": "Auto Bottom Rocket Panels",
-                "data": "Auto Bottom Rocket Panels"
-              },
-              {
-                "title": "Auto Top Rocket Cargo",
-                "data": "Auto Top Rocket Cargo"
-              },
-              {
-                "title": "Auto Middle Rocket Cargo",
-                "data": "Auto Middle Rocket Cargo"
-              },
-              {
-                "title": "Auto Bottom Rocket Cargo",
-                "data": "Auto Bottom Rocket Cargo"
-              },
-              {
-                "title": "Auto Ship Panels",
-                "data": "Auto Ship Panels"
-              },
-              {
-                "title": "Auto Ship Cargo",
-                "data": "Auto Ship Cargo"
-              },
-              {
-                "title": "Teleop Top Rocket Panels",
-                "data": "Teleop Top Rocket Panels"
-              },
-              {
-                "title": "Teleop Middle Rocket Panels",
-                "data": "Teleop Middle Rocket Panels"
-              },
-              {
-                "title": "Teleop Bottom Rocket Panels",
-                "data": "Teleop Bottom Rocket Panels"
-              },
-              {
-                "title": "Teleop Top Rocket Cargo",
-                "data": "Teleop Top Rocket Cargo"
-              },
-              {
-                "title": "Teleop Middle Rocket Cargo",
-                "data": "Teleop Middle Rocket Cargo"
-              },
-              {
-                "title": "Teleop Bottom Rocket Cargo",
-                "data": "Teleop Bottom Rocket Cargo"
-              },
-              {
-                "title": "Teleop Ship Panels",
-                "data": "Teleop Ship Panels"
-              },
-              {
-                "title": "Teleop Ship Cargo",
-                "data": "Teleop Ship Cargo"
-              },
-              {
-                "title": "Panel Ground Pickup",
-                "data": "Panel Ground Pickup"
-              },
-              {
-                "title": "Cargo Ground Pickup",
-                "data": "Cargo Ground Pickup"
-              },
-              {
-                "title": "Endgame Level Climbed",
-                "data": "Endgame Level Climbed"
-              },
-              {
-                "title": "Endgame Assist in Climbing",
-                "data": "Endgame Assist in Climbing"
-              },
-              {
-                "title": "Reckless Driving",
-                "data": "Reckless Driving"
-              },
-              {
-                "title": "Not Present",
-                "data": "Not Present"
-              },
-              {
-                "title": "Disabled",
-                "data": "Disabled"
-              },
-              {
-                "title": "Robot Failure",
-                "data": "Robot Failure"
-              },
-              {
-                "title": "Top Heavy",
-                "data": "Top Heavy"
-              },
-              {
-                "title": "Foul",
-                "data": "Foul"
-              },
-              {
-                "title": "Card",
-                "data": "Card"
-              }
-            ]
+            columns: columnDefs
+        });
+    });
+}
+
+var columnTeamDefs = [
+  {
+    "title": "Event Key",
+    "data": "Event Key"
+  },
+  {
+    "title": "Team Scouted",
+    "data": "Team Scouted"
+  },
+  {
+    "title": "Auto Top Rocket Panels",
+    "data": "Auto Top Rocket Panels"
+  },
+  {
+    "title": "Auto Middle Rocket Panels",
+    "data": "Auto Middle Rocket Panels"
+  },
+  {
+    "title": "Auto Bottom Rocket Panels",
+    "data": "Auto Bottom Rocket Panels"
+  },
+  {
+    "title": "Auto Top Rocket Cargo",
+    "data": "Auto Top Rocket Cargo"
+  },
+  {
+    "title": "Auto Middle Rocket Cargo",
+    "data": "Auto Middle Rocket Cargo"
+  },
+  {
+    "title": "Auto Bottom Rocket Cargo",
+    "data": "Auto Bottom Rocket Cargo"
+  },
+  {
+    "title": "Auto Ship Panels",
+    "data": "Auto Ship Panels"
+  },
+  {
+    "title": "Auto Ship Cargo",
+    "data": "Auto Ship Cargo"
+  },
+  {
+    "title": "Teleop Top Rocket Panels",
+    "data": "Teleop Top Rocket Panels"
+  },
+  {
+    "title": "Teleop Middle Rocket Panels",
+    "data": "Teleop Middle Rocket Panels"
+  },
+  {
+    "title": "Teleop Bottom Rocket Panels",
+    "data": "Teleop Bottom Rocket Panels"
+  },
+  {
+    "title": "Teleop Top Rocket Cargo",
+    "data": "Teleop Top Rocket Cargo"
+  },
+  {
+    "title": "Teleop Middle Rocket Cargo",
+    "data": "Teleop Middle Rocket Cargo"
+  },
+  {
+    "title": "Teleop Bottom Rocket Cargo",
+    "data": "Teleop Bottom Rocket Cargo"
+  },
+  {
+    "title": "Teleop Ship Panels",
+    "data": "Teleop Ship Panels"
+  },
+  {
+    "title": "Teleop Ship Cargo",
+    "data": "Teleop Ship Cargo"
+  },
+  {
+    "title": "Panel Ground Pickup",
+    "data": "Panel Ground Pickup"
+  },
+  {
+    "title": "Cargo Ground Pickup",
+    "data": "Cargo Ground Pickup"
+  },
+  {
+    "title": "Endgame Level Climbed",
+    "data": "Endgame Level Climbed"
+  },
+  {
+    "title": "Endgame Assist in Climbing",
+    "data": "Endgame Assist in Climbing"
+  },
+  {
+    "title": "Reckless Driving",
+    "data": "Reckless Driving"
+  },
+  {
+    "title": "Not Present",
+    "data": "Not Present"
+  },
+  {
+    "title": "Disabled",
+    "data": "Disabled"
+  },
+  {
+    "title": "Robot Failure",
+    "data": "Robot Failure"
+  },
+  {
+    "title": "Top Heavy",
+    "data": "Top Heavy"
+  },
+  {
+    "title": "Foul",
+    "data": "Foul"
+  },
+  {
+    "title": "Card",
+    "data": "Card"
+  }
+];
+
+function reloadTeamMatches(){
+    db.collection("the-green-alliance").get().then(function (querySnapshot) {
+        matches = querySnapshot.docs.map((doc) => {
+            var match = doc.data();
+
+            match["Event Key"] = match["Event Key"].toUpperCase();
+            match["Grouping Key"] = match["Event Key"].toUpperCase().replace(/^[0-9]+/, '') + match["Team Scouted"];
+
+            return match;
+        });
+
+        averages = _.groupBy(matches, function (match) {
+            return match["Grouping Key"].replace(/\s/g, '').toUpperCase();
+        });
+        
+        averages = _.map(averages, function (matches) {
+            /* BASED ON https://codereview.stackexchange.com/a/141533 */
+            var averagesCalc = Array.from(matches.reduce(
+                    (acc, obj) => Object.keys(obj).reduce(
+                        (acc, key) => typeof obj[key] == "number" ?
+                        acc.set(key, ( // immediately invoked function:
+                            ([sum, count]) => [sum + obj[key], count + 1]
+                        )(acc.get(key) || [0, 0])) // pass previous value
+                        :
+                        acc,
+                        acc),
+                    new Map()),
+                ([key, [sum, count]]) => ({
+                    key,
+                    value: (sum / count).toFixed(2)
+                })
+            );
+        
+            averages = {
+                "Event Key": matches[0]["Event Key"],
+            };
+            
+            averagesCalc.forEach((e,i) => {
+                averages[e.key] = e.value
+            });
+            
+            averages["Team Scouted"] = matches[0]["Team Scouted"];
+            
+            // RIP out Metadata
+            averages.grouping_key = "undefined";
+            averages.match_number = undefined;
+            averages.match_type = undefined;
+            averages.match_type_number = undefined;
+            averages.scout_initials = undefined;
+            averages.scout_team = undefined;
+            
+            return averages;
+        });
+        
+        $('#averages').DataTable({
+            data: averages,
+            scrollX: true,
+            destroy: true,
+            columns: columnTeamDefs
         });
     });
 }
