@@ -157,7 +157,8 @@ function sendToDatabase() {
         "Robot Failure" : $("#robot-failure").is(":checked") ? 1 : 0,
         "Top Heavy" : $("#top-heavy").is(":checked") ? 1 : 0,
         "Foul" : $("#foul").is(":checked") ? 1 : 0,
-        "Card" : $("#card").is(":checked") ? 1 : 0
+        "Card" : $("#card").is(":checked") ? 1 : 0,
+        "Can Play Defense" : $("#can-play-defense").is(":checked") ? 1 : 0
     };
     
     $(`.match-metadata input[type='text']`).val("");
@@ -306,6 +307,10 @@ var columnDefs = [
   {
     "title": "Card",
     "data": "Card"
+  },
+  {
+    "title": "Can Play Defense",
+    "data": "Can Play Defense"
   }
 ];
 
@@ -443,6 +448,10 @@ var columnTeamDefs = [
   {
     "title": "Card",
     "data": "Card"
+  },
+  {
+    "title": "Can Play Defense",
+    "data": "Can Play Defense"
   }
 ];
 
