@@ -188,10 +188,6 @@ var columnDefs = [
     "data": "Match Type"
   },
   {
-    "title": "Match Type Number",
-    "data": "Match Type Number"
-  },
-  {
     "title": "Scout Team",
     "data": "Scout Team"
   },
