@@ -306,6 +306,10 @@ var columnDefs = [
   {
     "title": "Card",
     "data": "Card"
+  },
+  {
+    "title": "Database ID",
+    "data": "Database ID"
   }
 ];
 
@@ -315,6 +319,8 @@ function reloadMatches(){
             data: querySnapshot.docs.map((doc) => {
                 var match = doc.data();
 
+                match["Database ID"] = doc._key.path.segments[doc._key.path.segments.length-1];
+                
                 match["Event Key"] = match["Event Key"].toUpperCase();
                 match["Grouping Key"] = match["Event Key"].toUpperCase().replace(/^[0-9]+/, '') + match["Team Scouted"];
 
